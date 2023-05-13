@@ -1,0 +1,7 @@
+.venv
+.ropeproject
+data
+.env
+**/__pycache__
+
+
