@@ -7,6 +7,7 @@ import mercantile
 import aiohttp
 import aiofiles
 from pathlib import Path
+
 from .api import EntitiesAPI, CoverageAPI, TileType, NamedPair, ImageMetadata
 from .utils import init_if_none
 
@@ -90,8 +91,11 @@ class Downloader:
         sequences_vtile = await self.coverage_api.aget_tile(
             tile, session, layer=TileType.SEQUENCE_LAYER, astuple=False
         )
+
         async with self._registry_lock:
+            # The sequences need to be downloaded only once
             new_sequence_ids = self._update_registry(sequences_vtile)
+
         LOGGER.info(f"Download tile {tile} with {len(new_sequence_ids)} sequences")
         for sequences_chunk in mit.chunked(new_sequence_ids, self._chunks):
             tasks = [

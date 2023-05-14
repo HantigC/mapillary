@@ -7,7 +7,6 @@ class SecretKeeperException(Exception):
 
 
 class SecretKeeper:
-
     def __init__(self, additional_secrets=None):
         self.principal_secrets = os.environ
         if additional_secrets is None:

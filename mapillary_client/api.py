@@ -8,8 +8,8 @@ import mercantile
 
 from .keeper import secret_keeper
 from .utils import init_if_none
-from vt2geojson.tools import vt_bytes_to_geojson
 import logging
+from vt2geojson.tools import vt_bytes_to_geojson
 
 
 LOGGER = logging.getLogger()
